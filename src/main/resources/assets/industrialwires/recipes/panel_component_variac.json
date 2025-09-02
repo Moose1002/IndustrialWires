@@ -15,7 +15,8 @@
       "data": 13
     },
     "c": {
-      "item": "immersiveengineering:metal_decoration0"
+      "item": "immersiveengineering:metal_decoration0",
+      "data": 0
     },
     "g": {
       "type": "forge:ore_dict",

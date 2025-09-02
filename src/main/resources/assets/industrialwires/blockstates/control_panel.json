@@ -114,12 +114,11 @@
       }
     },
     "inventory,type=top": {
-      "model":"industrialwires:block/panel_creator.obj"//Doesn't matter, this will be overridden in code
+      "model":"industrialwires:block/panel_creator.obj"
     },
     "inventory,type=single_comp": [{}],
     "inventory,type=unfinished": {
       "model": "industrialwires:block/panel_creator.obj"
-      //Doesn't matter, this will be overridden in code
     },
     "inventory,type=other_rs_wires": {
       "model": "industrialwires:rings",

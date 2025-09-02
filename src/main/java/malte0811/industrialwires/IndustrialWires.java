@@ -15,9 +15,6 @@
 package malte0811.industrialwires;
 
  import blusunrize.immersiveengineering.ImmersiveEngineering;
- import blusunrize.immersiveengineering.api.MultiblockHandler;
- import blusunrize.immersiveengineering.api.energy.wires.WireApi;
- import com.google.common.collect.ImmutableMap;
  import malte0811.industrialwires.blocks.BlockIWBase;
  import malte0811.industrialwires.blocks.TEDataFixer;
  import malte0811.industrialwires.blocks.controlpanel.*;
@@ -36,10 +33,7 @@ package malte0811.industrialwires;
  import net.minecraft.item.Item;
  import net.minecraft.item.ItemStack;
  import net.minecraft.item.crafting.IRecipe;
- import net.minecraft.network.datasync.DataSerializers;
- import net.minecraft.network.datasync.EntityDataManager;
  import net.minecraft.util.ResourceLocation;
- import net.minecraft.util.SoundEvent;
  import net.minecraft.util.datafix.FixTypes;
  import net.minecraftforge.common.util.ModFixs;
  import net.minecraftforge.event.RegistryEvent;
@@ -51,11 +45,9 @@ package malte0811.industrialwires;
  import net.minecraftforge.fml.common.event.FMLInitializationEvent;
  import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
  import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
- import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
  import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  import net.minecraftforge.fml.common.network.NetworkRegistry;
  import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
- import net.minecraftforge.fml.common.registry.EntityRegistry;
  import net.minecraftforge.fml.common.registry.GameRegistry;
  import net.minecraftforge.fml.relauncher.Side;
  import org.apache.logging.log4j.Logger;
@@ -64,9 +56,7 @@ package malte0811.industrialwires;
  import java.util.List;
 
 
- @Mod(modid = IndustrialWires.MODID, version = IndustrialWires.VERSION, dependencies = "required-after:immersiveengineering@[0.12-86,);after:ic2;required-after:forge@[14.23.3.2694,)",
-		certificateFingerprint = "7e11c175d1e24007afec7498a1616bef0000027d",
-		updateJSON = "https://raw.githubusercontent.com/malte0811/IndustrialWires/MC1.12/changelog.json")
+ @Mod(modid = IndustrialWires.MODID, version = IndustrialWires.VERSION, dependencies = "required-after:immersiveengineering@[0.12-86,);after:ic2;required-after:forge@[14.23.3.2694,)")
 @Mod.EventBusSubscriber
 public class IndustrialWires {
 	public static final String MODID = "industrialwires";

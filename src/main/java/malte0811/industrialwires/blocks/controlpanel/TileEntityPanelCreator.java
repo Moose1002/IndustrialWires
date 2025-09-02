@@ -145,6 +145,7 @@ public class TileEntityPanelCreator extends TileEntityIWBase implements INetGUI,
 			break;
 		case DISASSEMBLE:
 			if (components.size() == 0 && inv.getItem() == PanelUtils.PANEL_ITEM) {
+				if(inv.getTagCompound() == null) break;
 				TileEntityPanel te = new TileEntityPanel();
 				te.readFromItemNBT(inv.getTagCompound());
 				components = new ArrayList<>(te.getComponents());

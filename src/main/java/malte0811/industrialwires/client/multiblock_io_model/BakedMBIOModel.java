@@ -21,7 +21,6 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.ImmutableList;
 import malte0811.industrialwires.IndustrialWires;
-import malte0811.industrialwires.blocks.IWProperties;
 import malte0811.industrialwires.client.ClientUtilsIW;
 import malte0811.industrialwires.client.RawQuad;
 import malte0811.industrialwires.util.MBSideConfig;
@@ -38,7 +37,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
-import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.util.vector.Vector3f;
@@ -76,12 +74,6 @@ public class BakedMBIOModel implements IBakedModel {
 		if (side != null)
 			return ImmutableList.of();
 		MBSideConfig config = NULL_CONFIG;
-		if (state instanceof IExtendedBlockState) {
-			MBSideConfig tmpConfig = ((IExtendedBlockState) state).getValue(IWProperties.MB_SIDES);
-			if (tmpConfig!=null) {
-				config = tmpConfig;
-			}
-		}
 		List<BakedQuad> ret = cache.getIfPresent(config);
 		if (ret==null) {
 			if (IO_TEX==null) {

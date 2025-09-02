@@ -63,7 +63,7 @@ public class ClientProxy extends CommonProxy {
 		super.preInit();
 		OBJLoader.INSTANCE.addDomain(IndustrialWires.MODID);
 		ModelLoaderRegistry.registerLoader(new PanelModelLoader());
-		ModelLoaderRegistry.registerLoader(new MBIOModelLoader());
+		//ModelLoaderRegistry.registerLoader(new MBIOModelLoader());
 	}
 
 	@Override
