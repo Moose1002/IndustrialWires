@@ -33,7 +33,6 @@ public class Recipes {
 		registry.register(new RecipeKeyLock().setRegistryName(MODID, "key_lock"));
 		registry.register(new RecipePanelTexture().setRegistryName(MODID, "panel_texture"));
 		registry.register(new RecipeComponentCopy().setRegistryName(MODID, "component_copy"));
-		AssemblerHandler.registerRecipeAdapter(RecipeCoilLength.class, new Recipes.AllRecipeAdapter<>());
 		AssemblerHandler.registerRecipeAdapter(RecipeComponentCopy.class, new Recipes.AllRecipeAdapter<>());
 		AssemblerHandler.registerRecipeAdapter(RecipeKeyLock.class, new Recipes.AllRecipeAdapter<>());
 		AssemblerHandler.registerRecipeAdapter(RecipeKeyRing.class, new Recipes.AllRecipeAdapter<>());

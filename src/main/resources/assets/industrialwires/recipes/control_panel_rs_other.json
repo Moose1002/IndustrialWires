@@ -17,10 +17,5 @@
       "item": "industrialwires:control_panel",
       "data": 2
     }
-  },
-  "conditions": [
-    {
-      "type": "industrialwires:other_bundled_redstone"
-    }
-  ]
+  }
 }

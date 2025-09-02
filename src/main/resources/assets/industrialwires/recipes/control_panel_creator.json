@@ -11,9 +11,8 @@
   "type": "forge:ore_shaped",
   "key": {
     "a": {
-      "type": "industrialwires:ic2_item",
-      "name": "crafting",
-      "variant": "alloy"
+      "item": "immersiveengineering:metal",
+      "data": 37
     },
     "r": {
       "type": "forge:ore_dict", "ore": "stickSteel"
@@ -23,9 +22,8 @@
       "data": 1
     },
     "m": {
-      "type": "industrialwires:ic2_item",
-      "name": "crafting",
-      "variant": "electric_motor"
+      "item": "immersiveengineering:material",
+      "data": 27
     }
   }
 }

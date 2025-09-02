@@ -24,7 +24,6 @@ import blusunrize.immersiveengineering.common.util.Utils;
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
 import com.google.common.collect.ImmutableSet;
 import malte0811.industrialwires.IndustrialWires;
-import malte0811.industrialwires.hv.MultiblockMarx;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -315,15 +314,6 @@ public final class MiscUtils {
 			}
 		}
 		return ret.toString();
-	}
-
-	public static MultiblockHandler.IMultiblock getMBFromName(String s) {
-		for (MultiblockHandler.IMultiblock mb:MultiblockHandler.getMultiblocks()) {
-			if (mb.getUniqueName().equals(s)) {
-				return mb;
-			}
-		}
-		return MultiblockMarx.INSTANCE;
 	}
 
 	public static <T extends TileEntity> T getLoadedTE(World w, BlockPos pos, Class<T> clazz) {

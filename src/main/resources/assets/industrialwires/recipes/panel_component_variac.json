@@ -11,14 +11,11 @@
   "type": "forge:ore_shaped",
   "key": {
     "r": {
-      "type": "industrialwires:ic2_item",
-      "name": "crafting",
-      "variant": "rubber"
+      "item": "immersiveengineering:material",
+      "data": 13
     },
     "c": {
-      "type": "industrialwires:ic2_item",
-      "name": "crafting",
-      "variant": "coil"
+      "item": "immersiveengineering:metal_decoration0"
     },
     "g": {
       "type": "forge:ore_dict",

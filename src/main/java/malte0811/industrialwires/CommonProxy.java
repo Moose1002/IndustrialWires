@@ -16,14 +16,10 @@ package malte0811.industrialwires;
 
 import malte0811.industrialwires.blocks.controlpanel.TileEntityPanelCreator;
 import malte0811.industrialwires.blocks.controlpanel.TileEntityRSPanel;
-import malte0811.industrialwires.blocks.converter.TileEntityMechMB;
-import malte0811.industrialwires.blocks.hv.TileEntityJacobsLadder;
-import malte0811.industrialwires.blocks.hv.TileEntityMarx;
 import malte0811.industrialwires.containers.ContainerPanelComponent;
 import malte0811.industrialwires.containers.ContainerPanelCreator;
 import malte0811.industrialwires.containers.ContainerRSPanelConn;
 import malte0811.industrialwires.containers.ContainerRenameKey;
-import malte0811.industrialwires.mech_mb.MechEnergy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemBlock;
@@ -48,8 +44,7 @@ public class CommonProxy implements IGuiHandler {
 		return null;
 	}
 
-	public void playJacobsLadderSound(TileEntityJacobsLadder te, int phase, Vec3d soundPos) {
-	}
+
 	public void startTinnitus() {
 	}
 
@@ -81,10 +76,6 @@ public class CommonProxy implements IGuiHandler {
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		return null;
 	}
-
-	public void playMarxBang(TileEntityMarx tileEntityMarx, Vec3d vec3d, float energy) {}
-
-	public void updateMechMBTurningSound(TileEntityMechMB te, MechEnergy energy) {}
 
 	public void stopAllSoundsExcept(BlockPos pos, Set<?> excluded) {}
 

@@ -7,7 +7,6 @@
     "rdr",
     " w "
   ],
-  "type": "industrialwires:component_init",
   "key": {
     "r": {
       "type": "forge:ore_dict", "ore": "stickSteel"
@@ -18,5 +17,6 @@
     "w": {
       "type": "forge:ore_dict", "ore": "wireCopper"
     }
-  }
+  },
+  "type": "forge:ore_shaped"
 }

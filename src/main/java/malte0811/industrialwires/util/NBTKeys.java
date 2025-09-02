@@ -46,21 +46,6 @@ public final class NBTKeys {
 	public static final String ID = "cfgId";
 	public static final String VALUE = "value";
 
-	//HV
-	public static final String STAGES = "stages";
-	public static final String HAS_CONN = "hasConn";
-	public static final String CAP_VOLTAGES = "capVoltages";
-
-	//Mechanical
-	public static final String PARTS = "parts";
-	public static final String POS = "pos";
-	public static final String SPEED = "speed";
-	public static final String TEXTURE = "texture";
-	public static final String AC = "Ac";
-	public static final String WAVEFORM = "Wf";
-	public static final String MAX_SPEED = "maxSpeed";
-	public static final String SIDE_CONFIG = "sideConfig";
-
 
 	private NBTKeys() {}
 }

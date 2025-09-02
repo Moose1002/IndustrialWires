@@ -16,16 +16,10 @@
 package malte0811.industrialwires.blocks.controlpanel;
 
 import malte0811.industrialwires.compat.Compat;
-import malte0811.industrialwires.compat.CompatCapabilities.Charset;
 import mrtjp.projectred.api.IBundledTile;
 import mrtjp.projectred.api.ProjectRedAPI;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.common.Optional;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.Arrays;
 
 @Optional.Interface(iface = "mrtjp.projectred.api.IBundledTile", modid = ProjectRedAPI.modIDCore)
 public class TileEntityRSPanelOthers extends TileEntityRSPanel implements IBundledTile {
@@ -65,19 +59,4 @@ public class TileEntityRSPanelOthers extends TileEntityRSPanel implements IBundl
 		Compat.updateBundledRS.run(world, pos, null);
 	}
 
-	@Nullable
-	@Override
-	public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-		if (capability==Charset.EMITTER_CAP) {
-			return Charset.EMITTER_CAP.cast(()->Arrays.copyOf(out, 16));
-		} else if (capability==Charset.RECEIVER_CAP) {
-			return Charset.RECEIVER_CAP.cast(this::updateInput);
-		}
-		return null;
-	}
-
-	@Override
-	public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
-		return capability==Charset.EMITTER_CAP||capability==Charset.RECEIVER_CAP;
-	}
 }
