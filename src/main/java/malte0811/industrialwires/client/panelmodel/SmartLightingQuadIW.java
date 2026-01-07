@@ -44,11 +44,6 @@ public class SmartLightingQuadIW extends BakedQuad {
 
 	private int brightness;
 
-	public SmartLightingQuadIW(int[] vertexDataIn, int tintIndexIn, EnumFacing faceIn, TextureAtlasSprite spriteIn, VertexFormat format, int brightness) {
-		super(vertexDataIn, tintIndexIn, faceIn, spriteIn, false, format);
-		this.brightness = brightness;
-	}
-
 	public SmartLightingQuadIW(BakedQuad ret, int light) {
 		super(ret.getVertexData(), ret.getTintIndex(), ret.getFace(), ret.getSprite(), false, ret.getFormat());
 		this.brightness = light;

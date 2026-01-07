@@ -1,14 +1,14 @@
 [
 {
   "modid": "industrialwires",
-  "name": "Industrial Wires",
-  "description": "An addon for IndustrialCraft2 and Immersive Engineering that adds IE wires to transfer IC2 power and other fun things!",
+  "name": "Immersive Panels",
+  "description": "An addon for Immersive Engineering that adds modular control panels.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["malte0811"],
-  "credits": "BluSunrize and Mr. Damien Hazard for Immersive Engineering, the IC2 team for IC2",
+  "authorList": ["malte0811, Moose1002"],
+  "credits": "BluSunrize and Mr. Damien Hazard for Immersive Engineering, and malte0811 for their work on the original mod.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

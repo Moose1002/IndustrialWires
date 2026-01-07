@@ -61,7 +61,7 @@ package malte0811.industrialwires;
 public class IndustrialWires {
 	public static final String MODID = "industrialwires";
 	public static final String VERSION = "${version}";
-	public static final String MODNAME = "Industrial Wires";
+	public static final String MODNAME = "Immersive Panels";
 	public static final int DATAFIXER_VER = 1;
 
 	public static final List<BlockIWBase> blocks = new ArrayList<>();

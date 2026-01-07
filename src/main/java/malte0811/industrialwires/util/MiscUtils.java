@@ -15,24 +15,15 @@
 
 package malte0811.industrialwires.util;
 
-import blusunrize.immersiveengineering.ImmersiveEngineering;
 import blusunrize.immersiveengineering.api.ApiUtils;
-import blusunrize.immersiveengineering.api.MultiblockHandler;
 import blusunrize.immersiveengineering.api.energy.wires.IImmersiveConnectable;
 import blusunrize.immersiveengineering.api.energy.wires.ImmersiveNetHandler;
-import blusunrize.immersiveengineering.common.util.Utils;
 import blusunrize.immersiveengineering.common.util.chickenbones.Matrix4;
 import com.google.common.collect.ImmutableSet;
-import malte0811.industrialwires.IndustrialWires;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.util.vector.Vector3f;
@@ -97,41 +88,6 @@ public final class MiscUtils {
 		return in.add(f.getXOffset() * amount, f.getYOffset() * amount, f.getZOffset() * amount);
 	}
 
-	/**
-	 * Calculates the parameters for offset to generate here from origin
-	 *
-	 * @return right, forward, up
-	 */
-	public static BlockPos getOffset(Vec3i origin, EnumFacing f, boolean mirror, Vec3i here) {
-		int dX = here.getX()-origin.getX();
-		int dZ = here.getZ()-origin.getZ();
-		int forward = 0;
-		int right = 0;
-		int up = here.getY() - origin.getY();
-		switch (f) {
-			case NORTH:
-				forward = dZ;
-				right = -dX;
-				break;
-			case SOUTH:
-				forward = -dZ;
-				right = dX;
-				break;
-			case WEST:
-				right = dZ;
-				forward = dX;
-				break;
-			case EAST:
-				right = -dZ;
-				forward = -dX;
-				break;
-		}
-		if (mirror) {
-			right *= -1;
-		}
-		return new BlockPos(right, forward, up);
-	}
-
 	@Nonnull
 	public static AxisAlignedBB apply(@Nonnull Matrix4 mat, @Nonnull AxisAlignedBB in) {
 		Vec3d min = new Vec3d(in.minX, in.minY, in.minZ);
@@ -140,17 +96,6 @@ public final class MiscUtils {
 		max = mat.apply(max);
 		return new AxisAlignedBB(min.x, min.y, min.z, max.x, max.y, max.z);
 	}
-
-	public static float[] interpolate(double a, float[] cA, double b, float[] cB) {
-		float[] ret = new float[cA.length];
-		for (int i = 0; i < ret.length; i++) {
-			ret[i] = (float) (a * cA[i] + b * cB[i]);
-		}
-		return ret;
-	}
-
-	// Taken from TEImmersiveConnectable
-
 
 	public static Set<ImmersiveNetHandler.Connection> genConnBlockstate(Set<ImmersiveNetHandler.Connection> conns, World world) {
 		if (conns == null)
@@ -183,54 +128,6 @@ public final class MiscUtils {
 		return ret;
 	}
 
-	public static void writeConnsToNBT(NBTTagCompound nbt, TileEntity te) {
-		World world = te.getWorld();
-		if (world != null && !world.isRemote && nbt != null) {
-			NBTTagList connectionList = new NBTTagList();
-			Set<ImmersiveNetHandler.Connection> conL = ImmersiveNetHandler.INSTANCE.getConnections(world, Utils.toCC(te));
-			if (conL != null)
-				for (ImmersiveNetHandler.Connection con : conL)
-					connectionList.appendTag(con.writeToNBT());
-			nbt.setTag("connectionList", connectionList);
-		}
-	}
-
-	public static void loadConnsFromNBT(NBTTagCompound nbt, TileEntity te) {
-		World world = te.getWorld();
-		if (world != null && world.isRemote && !IndustrialWires.proxy.isSingleplayer() && nbt != null) {
-			NBTTagList connectionList = nbt.getTagList("connectionList", 10);
-			ImmersiveNetHandler.INSTANCE.clearConnectionsOriginatingFrom(Utils.toCC(te), world);
-			for (int i = 0; i < connectionList.tagCount(); i++) {
-				NBTTagCompound conTag = connectionList.getCompoundTagAt(i);
-				ImmersiveNetHandler.Connection con = ImmersiveNetHandler.Connection.readFromNBT(conTag);
-				if (con != null) {
-					ImmersiveNetHandler.INSTANCE.addConnection(world, Utils.toCC(te), con);
-				} else
-					IndustrialWires.logger.error("CLIENT read connection as null");
-			}
-		}
-	}
-
-	public static boolean handleUpdate(int id, BlockPos pos, World world) {
-		if (id == -1 || id == 255) {
-			IBlockState state = world.getBlockState(pos);
-			world.notifyBlockUpdate(pos, state, state, 3);
-			return true;
-		} else if (id == 254) {
-			IBlockState state = world.getBlockState(pos);
-			if (state instanceof IExtendedBlockState) {
-				state = state.getActualState(world, pos);
-				state = state.getBlock().getExtendedState(state, world, pos);
-				ImmersiveEngineering.proxy.removeStateFromSmartModelCache((IExtendedBlockState) state);
-				ImmersiveEngineering.proxy.removeStateFromConnectionModelCache((IExtendedBlockState) state);
-			}
-			world.notifyBlockUpdate(pos, state, state, 3);
-			return true;
-		}
-		return false;
-	}
-	//End of code from TEImmersiveConnectable
-
 	@SideOnly(Side.CLIENT)
 	public static Vec2f rotate90(Vec2f in) {
 		//Yes, when rotating by 90 degrees, x becomes y!
@@ -256,64 +153,6 @@ public final class MiscUtils {
 	@SideOnly(Side.CLIENT)
 	public static Vector3f withNewY(Vec2f in, float y) {
 		return new Vector3f(in.x, y, in.y);
-	}
-
-	public static int count1Bits(int i) {
-		int ret = 0;
-		for (int j = 0; j < 32; j++) {
-			ret += (i>>>j)&1;
-		}
-		return ret;
-	}
-
-
-	public static EnumFacing applyRotationToFacing(Rotation rot, EnumFacing facing)
-	{
-		switch(rot)
-		{
-			case CLOCKWISE_90:
-				facing = facing.rotateY();
-				break;
-			case CLOCKWISE_180:
-				facing = facing.getOpposite();
-				break;
-			case COUNTERCLOCKWISE_90:
-				facing = facing.rotateYCCW();
-				break;
-		}
-		return facing;
-	}
-
-	public static Rotation getRotationBetweenFacings(EnumFacing orig, EnumFacing to)
-	{
-		if (to==orig)
-			return Rotation.NONE;
-		if (orig.getAxis()==EnumFacing.Axis.Y||to.getAxis()==EnumFacing.Axis.Y)
-			return null;
-		orig = orig.rotateY();
-		if (orig==to)
-			return Rotation.CLOCKWISE_90;
-		orig = orig.rotateY();
-		if (orig==to)
-			return Rotation.CLOCKWISE_180;
-		orig = orig.rotateY();
-		if (orig==to)
-			return Rotation.COUNTERCLOCKWISE_90;
-		return null;//This shouldn't ever happen
-	}
-
-	public static String toSnakeCase(String in) {
-		StringBuilder ret = new StringBuilder(in.length());
-		ret.append(in.charAt(0));
-		for (int i = 1;i<in.length();i++) {
-			char here = in.charAt(i);
-			if (Character.isUpperCase(here)) {
-				ret.append('_').append(Character.toLowerCase(here));
-			} else {
-				ret.append(here);
-			}
-		}
-		return ret.toString();
 	}
 
 	public static <T extends TileEntity> T getLoadedTE(World w, BlockPos pos, Class<T> clazz) {
